@@ -14,16 +14,7 @@ const btnNew = document.querySelector(".btn--new");
 const btnRoll = document.querySelector(".btn--roll");
 const btnHold = document.querySelector(".btn--hold");
 
-// STEP 2: INITIALIZING GAME STATE
-score0El.textContent = 0;
-score1El.textContent = 0;
-
-diceEl.classList.add("hidden");
-
-let scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playing = true;
+let currentScore, activePlayer, playing;
 
 // STEP 3: FUNCTIONS
 const switchPlayer = function () {
@@ -33,6 +24,30 @@ const switchPlayer = function () {
   player0El.classList.toggle("player--active");
   player1El.classList.toggle("player--active");
 };
+
+const init = function () {
+  // STEP 2: INITIALIZING GAME STATE
+  const scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+
+  diceEl.classList.add("hidden");
+  player0El.classList.remove("player--winner");
+  player1El.classList.remove("player--winner");
+  player0El.classList.add("player--active");
+  player1El.classList.remove("player--active");
+};
+
+// STARTING THE GAME
+init();
 
 // STEP 4: ROLLING THE DICE ACTION
 btnRoll.addEventListener("click", function () {
@@ -58,11 +73,11 @@ btnHold.addEventListener("click", function () {
     scores[activePlayer] += currentScore;
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       playing = false;
       diceEl.classList.add("hidden");
       document
-        .querySelector(`player--${activePlayer}`)
+        .querySelector(`.player--${activePlayer}`)
         .classList.add("player--winner");
       document
         .querySelector(`.player--${activePlayer}`)
@@ -72,3 +87,6 @@ btnHold.addEventListener("click", function () {
     }
   }
 });
+
+// STEP 6: RESETTING THE GAME
+btnNew.addEventListener("click", init);
