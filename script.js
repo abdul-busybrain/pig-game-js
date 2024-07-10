@@ -14,7 +14,7 @@ const btnNew = document.querySelector(".btn--new");
 const btnRoll = document.querySelector(".btn--roll");
 const btnHold = document.querySelector(".btn--hold");
 
-let currentScore, activePlayer, playing;
+let scores, currentScore, activePlayer, playing;
 
 // STEP 3: FUNCTIONS
 const switchPlayer = function () {
@@ -27,7 +27,7 @@ const switchPlayer = function () {
 
 const init = function () {
   // STEP 2: INITIALIZING GAME STATE
-  const scores = [0, 0];
+  scores = [0, 0];
   currentScore = 0;
   activePlayer = 0;
   playing = true;
