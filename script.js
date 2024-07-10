@@ -33,3 +33,19 @@ const switchPlayer = function () {
   player0El.classList.toggle("player--active");
   player1El.classList.toggle("player--active");
 };
+
+// STEP 4: ROLLING THE DICE ACTION
+btnRoll.addEventListener("click", function () {
+  const dice = Math.trunc(Math.random() * 6) + 1;
+
+  diceEl.src = `./img/dice-${dice}.png`;
+  diceEl.classList.remove("hidden");
+
+  if (dice !== 1) {
+    currentScore += dice;
+    document.getElementById(`current--${activePlayer}`).textContent =
+      currentScore;
+  } else {
+    switchPlayer();
+  }
+});
